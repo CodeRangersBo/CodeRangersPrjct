@@ -1,0 +1,35 @@
+<h1 style="text-align: center;">Administrador</h1>
+<mat-card class="example-card">
+	<mat-card-header justify-content:center align-items:center>
+		<mat-card-title>Registro</mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		<form [formGroup]="formularioForm">
+			<div class="row">
+				<div class="col">
+					<label for="exampleFormControlInput1">Usuario</label>
+					<input type="text" formControlName="mail" class="form-control" placeholder="Usuario">
+    			</div>
+				<div class="col">
+					<label for="exampleFormControlInput1">Tipo de usuario</label>
+					<select class="form-control" formControlName="tipo">
+        				<option>Auditor</option>
+        				<option>Empresa</option>
+					</select>
+				</div>
+			</div>
+			&nbsp;
+			&nbsp;
+			<div class="form-group">
+				<label for="exampleFormControlInput1">Contraseña</label>
+				<input type="password" class="form-control" formControlName="password" id="exampleFormControlInput1" placeholder="Contraseña">
+  			</div>
+		</form>
+	</mat-card-content>
+    <mat-card-actions style="text-align:center">
+        <button mat-button (click)="createUser()" >Registrar</button>
+        &nbsp;
+        &nbsp;
+        <button mat-button >Actualizar</button>
+    </mat-card-actions>
+</mat-card>

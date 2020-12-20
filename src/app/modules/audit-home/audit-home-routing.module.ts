@@ -21,6 +21,13 @@ const routes: Routes = [
           import("./modules/audit-approve/audit-approve.module").then(
             m => m.AuditApproveModule
           )
+      },
+      {
+        path: "audit-profile",
+        loadChildren: () =>
+          import("./modules/audit-profile/audit-profile.module").then(
+            m => m.AuditProfileModule
+          )
       }
     ]
   }

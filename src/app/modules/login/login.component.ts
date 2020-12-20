@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
       })
       .subscribe(
         res => {
-
           //TODO
           this.usSer.getUsersById(res.localId).subscribe(
             dbres => {
