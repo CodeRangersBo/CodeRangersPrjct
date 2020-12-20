@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
           this.usSer.getUsersById(res.localId).subscribe(
             dbres => {
               Object.entries(dbres).map((p:any) => {
-                /*if (p[1].type == 'Admin') {
-                  this.router.navigate([""])
-                } else*/ if(p[1].type == 'Auditor'){
+                if (p[1].type == 'Admin') {
+                  this.router.navigate(["admin"])
+                } else if(p[1].type == 'Auditor'){
                   this.router.navigate(["auditHome"]);
                 }else if (p[1].type == 'Empresa') {
                   this.router.navigate(["home"])
@@ -61,7 +61,8 @@ export class LoginComponent implements OnInit {
           // }
         },
         err => {
-          console.log("LOGIN ERROR: ");
+          // console.log("LOGIN ERROR: ");
+          alert("Usuario o Contraseña incorrecta")
         }
       );
   }
