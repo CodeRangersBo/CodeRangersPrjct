@@ -38,7 +38,7 @@ export class RegistroComponent implements OnInit {
           type: 'Empresa'
         }).subscribe(
           dbres => {
-            console.log("da success", dbres)
+            console.log("db success", dbres)
           },
           dberr => {
             console.log("db Error", dberr)

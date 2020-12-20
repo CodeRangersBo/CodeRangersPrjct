@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
+import { AuthService } from "src/app/shared/services/auth.service";
 import { UserService } from "src/app/shared/services/user.service";
 
 export interface PeriodicElement {
@@ -18,6 +19,7 @@ export class EmpresaComponent implements OnInit,  OnDestroy {
 
   products = [];
   productGetSubs: Subscription;
+  userDeleteSubs: Subscription;
   displayedColumns: string[];
   dataSource;
 
@@ -29,7 +31,8 @@ export class EmpresaComponent implements OnInit,  OnDestroy {
 }
   */
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
@@ -41,11 +44,32 @@ export class EmpresaComponent implements OnInit,  OnDestroy {
     this.productGetSubs = this.userService.getUser().subscribe(res => {
       Object.entries(res).map((p: any) => this.products.push({id: p[0], ...p[1]}));
       this.displayedColumns = ["id", "mail", "type","update","delete"];
-      this.dataSource = this.products.filter( s => s.tipo == this.state ) ;
+      this.dataSource = this.products.filter( s => s.type == this.state ) ;
     });
   }
 
   onDelete(id: any): void {
+    console.log(id)
+    this.auth.deleteUser({
+      idToken: id
+    }).subscribe(
+      res => {
+        console.log("entro 1er res")
+        this.userDeleteSubs = this.userService.deleteUser(id).subscribe(
+          res => {
+            console.log("RESPONSE: ", res);
+            this.loadProduct();
+          },
+          err => {
+            console.log("ERROR: ");
+          }
+        );
+      },
+      err => {
+
+      }
+    );
+
     /*this.userDeleteSubs = this.userService.deleteUser(id).subscribe(
       res => {
         console.log("RESPONSE: ", res);
@@ -58,7 +82,7 @@ export class EmpresaComponent implements OnInit,  OnDestroy {
   }
 
   ngOnDestroy() {
-    /*this.userGetSubs ? this.userGetSubs.unsubscribe() : "";
-    this.userDeleteSubs ? this.userDeleteSubs.unsubscribe() : "";*/
+    /*this.userGetSubs ? this.userGetSubs.unsubscribe() : "";*/
+    this.userDeleteSubs ? this.userDeleteSubs.unsubscribe() : "";
   }
 }
