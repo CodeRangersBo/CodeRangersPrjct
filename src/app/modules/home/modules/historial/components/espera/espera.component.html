@@ -30,7 +30,7 @@
 	<ng-container matColumnDef="detalles">
 		<th mat-header-cell *matHeaderCellDef> Detalles </th>
 		<td mat-cell *matCellDef="let element"> <a mdbBtn color="white" outline="true"
-				class="wow fadeInDown waves-light" data-wow-delay="0.4s" mdbWavesEffect routerLink="/home/detalle">Ver
+				class="wow fadeInDown waves-light" data-wow-delay="0.4s" mdbWavesEffect (click) = "mandarElement(element.ownerId)">Ver
 				Detalle</a>
 		</td>
 	</ng-container>
@@ -39,8 +39,12 @@
 	<ng-container matColumnDef="delete">
 		<th mat-header-cell *matHeaderCellDef> Borrar </th>
 		<td mat-cell *matCellDef="let element">
-			<button type="button" class="btn btn-light" (click)="onDelete(element.id)">Borrar</button> </td>
+			<div *ngIf="status == 'En Espera'">
+				<button type="button" class="btn btn-light" (click)="onDelete(element.id)">Borrar</button> 
+			</div>
+		</td>
 	</ng-container>
+
 
 	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 	<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
