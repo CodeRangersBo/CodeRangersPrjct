@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { elementAt } from 'rxjs/operators';
 import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
@@ -35,7 +36,8 @@ export class EsperaComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private b_Layer: BusinessLayerService
+    private b_Layer: BusinessLayerService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -67,6 +69,12 @@ export class EsperaComponent implements OnInit {
         console.log("ERROR: ");
       }
     );
+  }
+
+  mandarElement(e: any) {
+    console.log(e);
+    this.authService.guardarForm(e);
+    this.router.navigate(["/home/detalle"]);
   }
 
   ngOnDestroy() {

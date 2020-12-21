@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { BusinessLayerService } from 'src/app/shared/services/business-layer.service';
 
 @Component({
@@ -21,12 +22,24 @@ export class DetalleComponent implements OnInit {
     //private formBuilder: FormBuilder,
     //private authService: AuthService,
     private b_Layer: BusinessLayerService,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
-    this.element = this.b_Layer.currentElent;
-    console.log(this.element);
+    //TODO obtener element
+    console.log(this.auth.getForm());
+    const formId = this.auth.getForm();
+    this.b_Layer.getProductsById(formId).subscribe(
+      res => {
+        Object.entries(res).map( (p:any) => {
+          console.log(p)
+          this.element = p[1][1];
+        })
+        // this.element
+      }
+    )
+    this.auth.borrarForm();
     //this.element == null ? this.router.navigate(["auditHome/audit-history"]) : "";
   }
 

@@ -52,4 +52,17 @@ export class AuthService {
     localStorage.removeItem("userId");
     this.router.navigate(["login"]);
   }
+
+  public guardarForm(f:any){
+    localStorage.setItem("formDetalle", f);
+  }
+
+  public getForm() {
+    return localStorage.getItem("formDetalle")
+  }
+
+  public borrarForm(){
+    localStorage.removeItem("formDetalle");
+  }
+
 }
