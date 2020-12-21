@@ -1,14 +1,55 @@
+
 <div style="display: flex; flex-direction: column; max-width: 800px;">
+	<img src="https://autobotiks.com/wp-content/uploads/2020/07/av2-1.png" style="width: 200px; align-self: center; margin-top: 50px">
+	&nbsp;
+	<h1 style="margin-top: 20px; font-family: 'Times New Roman', Times, serif; text-align: center;"><b>Perfil de la Empresa</b></h1>
+
+	<mat-card class="example-card" style="width:300px; align-self: center;">
+		<mat-card-header>
+			<mat-card-title style="font-family: 'Times New Roman', Times, serif;">Datos:</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<form [formGroup]="formulario">
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Nombre</label>
+					<input type="email" class="form-control" formControlName="nombre" id="exampleFormControlInput1" placeholder="">
+                </div>
+
+                <div class="form-group">
+					<label for="exampleFormControlInput1">E-mail</label>
+					<input type="email" class="form-control" formControlName="email" id="exampleFormControlInput1" placeholder="">
+                </div>
+
+                <div class="form-group">
+					<label for="exampleFormControlInput1">Dirección</label>
+					<input type="email" class="form-control" formControlName="direccion" id="exampleFormControlInput1" placeholder="">
+                </div>
+
+                <div class="form-group">
+					<label for="exampleFormControlInput1">Número</label>
+					<input type="email" class="form-control" formControlName="numero" id="exampleFormControlInput1" placeholder="">
+                </div>
+		    </form>
+		</mat-card-content>
+		<mat-card-actions style="text-align:center">
+			<button mat-button (click) = "updateProfile()" >Actualizar</button>
+		</mat-card-actions>
+	</mat-card>
+    <p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p>
+    
+</div>
+
+<!--<div style="display: flex; flex-direction: column; max-width: 800px;">
     <mat-card class="example-card" style="width:300px; align-self: center;">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54iLC-JopSr54OnaoTHcMculZnCMyweBC9w&usqp=CAU" style="width: 200px; align-self: center;">
 		<mat-card-header>
 			<mat-card-title style="font-family: 'Times New Roman', Times, serif;"><h1>Name</h1></mat-card-title>
 		</mat-card-header>
 		<mat-card-content>
-            <!-- TODO make getters and setters of the users -->
+
             <p class="title"> ID DE USUARIO </p>
             <p class="title"> Dirección </p>
             <p class="title"> Contacto </p>
 		</mat-card-content>
 	</mat-card>
-</div>
+</div>-->
