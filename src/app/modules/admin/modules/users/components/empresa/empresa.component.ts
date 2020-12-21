@@ -43,7 +43,7 @@ export class EmpresaComponent implements OnInit,  OnDestroy {
     this.products = [];
     this.productGetSubs = this.userService.getUser().subscribe(res => {
       Object.entries(res).map((p: any) => this.products.push({id: p[0], ...p[1]}));
-      this.displayedColumns = ["id", "mail", "type","update","delete"];
+      this.displayedColumns = ["id", "mail", "type", "delete"];
       this.dataSource = this.products.filter( s => s.type == this.state ) ;
     });
   }
