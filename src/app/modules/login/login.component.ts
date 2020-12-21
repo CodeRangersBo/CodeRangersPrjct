@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
                 }else if (p[1].type == 'Empresa') {
                   this.router.navigate(["home"])
                 } else {
-                  console.log("Not a Type of Account")
+                  alert("Usuario o Contraseña incorrecta")
                 }
                 
               })

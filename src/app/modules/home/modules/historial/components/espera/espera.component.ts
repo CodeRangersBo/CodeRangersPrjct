@@ -51,8 +51,8 @@ export class EsperaComponent implements OnInit {
         Object.entries(res).map((p: any) => {
           if (p[1][1].estado == this.status) {
             this.espera.push({ id: p[1][0], ...p[1][1] });
-            this.dataSource = this.espera;
           }
+          this.dataSource = this.espera;
         });
       });
   }

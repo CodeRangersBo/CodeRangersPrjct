@@ -48,27 +48,49 @@ export class EmpresaComponent implements OnInit,  OnDestroy {
     });
   }
 
-  onDelete(id: any): void {
-    console.log(id)
-    this.auth.deleteUser({
-      idToken: id
-    }).subscribe(
+  onDelete(user: any): void {
+
+    this.userService.getUsersById(user.id).subscribe(
       res => {
-        console.log("entro 1er res")
-        this.userDeleteSubs = this.userService.deleteUser(id).subscribe(
+        console.log(Object.entries(res).map( (p:any) => p[0]))
+        this.userDeleteSubs = this.userService.updateUser(Object.entries(res).map( (p:any) => p[0]), {
+          ...user,
+          type: "None"
+        }).subscribe(
           res => {
-            console.log("RESPONSE: ", res);
-            this.loadProduct();
+            this.loadProduct()
+            console.log("Success", res)
           },
           err => {
-            console.log("ERROR: ");
+            console.log("Error")
           }
         );
-      },
-      err => {
-
       }
-    );
+    )
+
+
+    
+
+    // console.log(id)
+    // this.auth.deleteUser({
+    //   idToken: id
+    // }).subscribe(
+    //   res => {
+    //     console.log("entro 1er res")
+    //     this.userDeleteSubs = this.userService.deleteUser(id).subscribe(
+    //       res => {
+    //         console.log("RESPONSE: ", res);
+    //         this.loadProduct();
+    //       },
+    //       err => {
+    //         console.log("ERROR: ");
+    //       }
+    //     );
+    //   },
+    //   err => {
+
+    //   }
+    // );
 
     /*this.userDeleteSubs = this.userService.deleteUser(id).subscribe(
       res => {

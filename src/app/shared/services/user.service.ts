@@ -14,6 +14,7 @@ export class UserService {
       `${this.url}/usuarios.json?orderBy="id"&equalTo="${id}"&print=pretty`
     );
   }
+
   public addUser(mensaje: any): Observable<any> {
     return this.http.post(`${this.url}/usuarios.json`, mensaje);
   }
